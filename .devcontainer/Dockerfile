@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/python:3.10-bullseye
+FROM mcr.microsoft.com/devcontainers/python:dev-3.12-bullseye
 
 # Switch to vscode user
 USER vscode
