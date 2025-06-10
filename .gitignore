@@ -5,3 +5,4 @@ playground-*.mongodb.js
 /certificates
 .devcontainer/certificates/*.crt
 
+.azure/
