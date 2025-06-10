@@ -68,7 +68,7 @@ param cosmosMongoCollections array = [
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
-var tags = { 'env-name': environmentName }
+var tags = { 'azd-env-name': environmentName }
 
 var appName = 'feedback-app-'
 
@@ -188,7 +188,7 @@ module api './modules/api-appservice-avm.bicep' = {
     siteConfig: {
       alwaysOn: true
       linuxFxVersion: 'python|3.12'
-      appCommandLine: 'gunicorn --timeout 60 --access-logfile "-" --error-logfile "-" --bind=0.0.0.0:8000 -k uvicorn.workers.UvicornWorker app.main:app'
+      appCommandLine: 'gunicorn --workers 1 --threads 2 --timeout 60 --access-logfile "-" --error-logfile "-" --bind=0.0.0.0:8000 -k uvicorn.workers.UvicornWorker app.main:app'
     }
     appSettings: {
       AZURE_KEY_VAULT_ENDPOINT: keyVault.outputs.uri
@@ -242,10 +242,3 @@ output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output API_BASE_URL string = api.outputs.SERVICE_API_URI
 output REACT_APP_WEB_BASE_URL string = web.outputs.SERVICE_WEB_URI
-
-
-// check
-output connectionStringKey string = connectionStringKey
-output databaseName string = actualDatabaseName
-output endpoint string = cosmos.outputs.endpoint
-
