@@ -29,26 +29,8 @@ var actualDatabaseName = !empty(cosmosDatabaseName) ? cosmosDatabaseName : defau
 param connectionStringKey string = 'AZURE-COSMOS-CONNECTION-STRING'
 param cosmosMongoCollections array = [
   {
-    name: 'TodoList'
-    id: 'TodoList'
-    shardKey: {
-      keys: [
-        'Hash'
-      ]
-    }
-    indexes: [
-      {
-        key: {
-          keys: [
-            '_id'
-          ]
-        }
-      }
-    ]
-  }
-  {
-    name: 'TodoItem'
-    id: 'TodoItem'
+    name: 'feedbacks'
+    id: 'feedbacks'
     shardKey: {
       keys: [
         'Hash'
